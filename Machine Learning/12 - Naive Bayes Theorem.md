@@ -1,5 +1,3 @@
-<img src="https://r2cdn.perplexity.ai/pplx-full-logo-primary-dark%402x.png" style="height:64px;margin-right:32px"/>
-
 # Naive Bayes Theorem - Super Simple Explanation
 
 Think of Naive Bayes like a **super smart detective** who solves cases by asking: *"Based on the evidence I see, what's the most likely explanation?"*[^1][^2]
