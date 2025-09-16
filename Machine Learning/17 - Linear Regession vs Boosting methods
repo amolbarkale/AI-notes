@@ -1,0 +1,121 @@
+# 📘 Notes on Linear Regression and Boosting Methods
+
+This document summarizes the concepts of **Linear Regression** and **Boosting-based ensemble methods**.  
+It is meant for quick reference in machine learning workflows.
+
+---
+
+## 1. Linear Regression
+**Definition**  
+Linear regression is one of the simplest supervised learning algorithms. It models the relationship between a dependent variable (target) and one or more independent variables (features) by fitting a straight line/plane.
+
+**Equation (Multiple Linear Regression):**
+\[
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p + \epsilon
+\]
+
+- \(y\) = predicted value (target)  
+- \(\beta_0\) = intercept (bias term)  
+- \(\beta_j\) = coefficient for feature \(x_j\)  
+- \(\epsilon\) = error term  
+
+**Objective (Ordinary Least Squares):**
+\[
+\min_\beta \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]
+
+**Characteristics:**
+- Easy to implement & interpret.  
+- Works well when relationship is **linear**.  
+- Sensitive to **outliers** and **multicollinearity**.  
+
+**Types:**
+- **Simple Linear Regression** → One predictor.  
+- **Multiple Linear Regression** → Multiple predictors.  
+- **Regularized Linear Models** → Ridge, Lasso, ElasticNet.  
+
+---
+
+## 2. Boosting Methods
+**Definition**  
+Boosting is an **ensemble technique** that builds models sequentially, where each new model focuses on fixing the errors made by previous models.  
+The final prediction is a **weighted combination** of all models.
+
+**Key Idea:**  
+- Weak learners (e.g., shallow decision trees) are combined to form a strong learner.  
+- Each new learner gives more weight to previously misclassified or poorly predicted samples.  
+
+---
+
+### 🔑 Main Boosting Algorithms
+
+#### a) AdaBoost (Adaptive Boosting)
+- Uses weighted decision trees (stumps).  
+- After each round:
+  - Misclassified samples get **higher weights**.  
+  - Correctly classified samples get **lower weights**.  
+- Final prediction is a weighted vote.  
+
+**Pros:** Simple, works well on small/moderate datasets.  
+**Cons:** Sensitive to noisy data & outliers.  
+
+---
+
+#### b) Gradient Boosting (GBM)
+- Builds trees sequentially, each correcting the **residual errors** of the previous one.  
+- Uses **gradient descent** to minimize a loss function.  
+
+**Pros:** Very flexible, can optimize different loss functions.  
+**Cons:** Can overfit if too many trees, slower training.  
+
+---
+
+#### c) XGBoost (Extreme Gradient Boosting)
+- An optimized implementation of Gradient Boosting.  
+- Features:
+  - Regularization (L1 & L2).  
+  - Parallel computation.  
+  - Handles missing values.  
+
+**Pros:** State-of-the-art on structured/tabular data, very fast.  
+**Cons:** More complex hyperparameter tuning.  
+
+---
+
+#### d) LightGBM
+- Gradient boosting framework by Microsoft.  
+- Uses **histogram-based** approach → faster training.  
+- Grows trees **leaf-wise** (instead of level-wise).  
+
+**Pros:** Extremely fast on large datasets, memory efficient.  
+**Cons:** Can overfit on small data if not tuned.  
+
+---
+
+#### e) CatBoost
+- Gradient boosting by Yandex, optimized for **categorical features**.  
+- Handles categorical encoding internally (no need for one-hot).  
+
+**Pros:** Great for datasets with many categorical features.  
+**Cons:** Slower than LightGBM, but simpler to use.  
+
+---
+
+## 3. Comparison: Linear Regression vs Boosting
+
+| Aspect                  | Linear Regression | Boosting (e.g., XGBoost, LightGBM) |
+|--------------------------|-------------------|------------------------------------|
+| Model type              | Parametric (linear) | Non-parametric (trees) |
+| Relationship assumption | Linear            | Can capture complex, nonlinear patterns |
+| Interpretability        | High (coefficients explain impact) | Lower (feature importance / SHAP needed) |
+| Training speed          | Very fast         | Slower (but efficient implementations exist) |
+| Performance             | Good for linear problems | Excellent on complex/tabular data |
+| Outlier sensitivity     | High              | Lower (robust to noise with tuning) |
+
+---
+
+## 4. Key Intuition
+- **Linear Regression** → Best when relationship is linear & data is clean.  
+- **Boosting** → Best when data is complex, nonlinear, and you need state-of-the-art accuracy.  
+
+---
